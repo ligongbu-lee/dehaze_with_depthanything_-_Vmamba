@@ -1,0 +1,87 @@
+# ============================================================
+#  .gitignore for dehaze_with_depthanything_+_Vmamba
+#  目标：仓库只保留源代码 + 配置 + 文档，便于阅读与服务器部署。
+#  权重 / 数据集 / 实验输出 不入库（可重新下载或重新生成）。
+# ============================================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+develop-eggs/
+.installed.cfg
+*.egg
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# ---------- 编译 / 扩展产物 ----------
+*.so
+*.pyd
+*.dll
+*.o
+*.a
+
+# ---------- IDE / 编辑器 ----------
+.idea/
+.vscode/
+*.iml
+*.swp
+.DS_Store
+
+# ---------- 模型权重 / checkpoints（重新下载或重新训练）----------
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.onnx
+*.safetensors
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# ---------- 压缩包 ----------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
+
+# ---------- 图片 / 视频（数据集与示例素材，不入库）----------
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tif
+*.tiff
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# ---------- 实验输出 / 数据目录 ----------
+results/
+models/
+samples/
+train_out/
+dataset/
+railway_depth/
+Depth-Anything/checkpoints/
+Depth-Anything/assets/
+depth_model/hazy_00/
+depth_model/models/
+
+# ---------- 日志 / 临时文件 ----------
+*.log
+push.log
+tmp/
+scratch/

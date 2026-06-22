@@ -1,0 +1,10 @@
+python ./validation.py --load_name "./models/rain980.pth"  --save_name "./results/result_derain" --baseroot "./datasets/testing/rain"
+E:\official_files\pycharm\efficientdefog_with_depth_+_biffusion\datasets\testing\fog\image
+E:\official_files\pycharm\efficientdefog_with_depth_+_biffusion\datasets\testing\fog\image\camel0000.png
+E:\official_files\pycharm\efficientdefog_with_depth_+_biffusion\models\rain980.pth
+E:\official_files\pycharm\efficientdefog_with_depth_+_biffusion\datasets\testing\rain
+python ./validation.py --load_name "./models/rain980.pth"  --save_name "./results/result_sr" --baseroot "./datasets/testing"
+E:\official_files\pycharm\efficientdefog_with_depth_+_biffusion\datasets\datasets_train\GT\gt
+
+python ./train.py --save_path "./models/pretrained/models_fog" --sample_path "./samples" --weight_decay 0.0 --train_batch_size 8  --epochs 5000 --lr_decrease_epoch 2000
+python ./validation.py --load_name "./models/rain980.pth"  --save_name "./results/results_derain" --baseroot "./datasets/testing/rain/"

@@ -1,0 +1,61 @@
+name: ir-sde
+suffix: ~  # add suffix to saved images
+model: denoising
+distortion: derain
+gpu_ids: [0]
+
+sde:
+  max_sigma: 10
+  T: 100
+  schedule: cosine # linear, cosine
+  eps: 0.005
+  
+degradation:
+  # for denoising
+  sigma: 25
+  noise_type: G # Gaussian noise: G
+
+  # for super-resolution
+  scale: 4
+
+datasets:
+  train_gan:
+    name: Train_GAN_Dataset
+    mode: LQGT
+#    dataroot_GT: test_dataset_h/Rain100H_test/norain_256
+#    dataroot_LQ: test_dataset_h/Rain100H_test/rain_256
+#    dataroot_GT: /data/Hxy/data/data_set/pix2pix_jingtu_addnoise/B/test
+#    dataroot_LQ: /data/Hxy/data/data_set/pix2pix_jingtu_addnoise/A/test
+
+    # train GAN  TEST
+    dataroot_GT: /data/skc/projects/efficientdefog_with_depth_+_biffusion/datasets/datasets_train/GT/gt/
+    dataroot_LQ: /data/skc/projects/efficientdefog_with_depth_+_biffusion/datasets/datasets_train/fog/fog/
+    # 使用 Depth-Anything 生成的深度图
+    dataroot_GTdepth: /data/skc/projects/efficientdefog_with_depth_+_biffusion/datasets/datasets_train/GT/depthanything/
+    dataroot_LQdepth: /data/skc/projects/efficientdefog_with_depth_+_biffusion/datasets/datasets_train/fog/depthanything/
+    # 原始深度图路径（备份）
+    # dataroot_GTdepth: /data/skc/projects/efficientdefog_with_depth_+_biffusion/datasets/datasets_train/GT/depthpng/
+    # dataroot_LQdepth: /data/skc/projects/efficientdefog_with_depth_+_biffusion/datasets/datasets_train/fog/depthpng/
+    n_workers: 0  # per GPU
+    batch_size: 4 #2025-11-30 修改为4，原batch为8
+    GT_size: 256
+    LR_size: 256
+    niter: 700000
+
+
+
+#### network structures
+network_G:
+  which_model_G: ConditionalUNet
+  setting:
+    in_nc: 3
+    out_nc: 3
+    nf: 64
+    depth: 4
+
+#### path
+path:
+  pretrain_model_G: /models/pretrained/460000_G.pth
+
+# 修改深度图模型路径参数
+depth_model_path: './depth_model/models/RA-Depth'  # RA-Depth模型文件夹路径
